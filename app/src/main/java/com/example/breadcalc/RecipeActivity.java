@@ -7,6 +7,8 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import org.jetbrains.annotations.NotNull;
+
 public class RecipeActivity extends AppCompatActivity {
     double flourRate, waterRate, saltRate, yeastRate, doughRate, butterRate;
     int massPerBread, breadCount;
@@ -19,11 +21,29 @@ public class RecipeActivity extends AppCompatActivity {
             totalWaterNotIncludeDough, totalSaltNotIncludeDough, totalYeastNotIncludeDough,
             totalDoughNotIncludeDough, totalButterNotIncludeDough;
 
+    private final String UNIT_GRAM = "g";
+    private final String UNIT_PERCENT = "%%";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recipe);
+    }
+
+    private void updateTextViewValue(int id, String value) {
+        TextView target = findViewById(id);
+        target.setText(value);
+    }
+
+    @NotNull
+    private static String getValueWithUnitString (int value, String unit) {
+        return String.format("%d" + unit, value);
+    }
+
+    @NotNull
+    private static String getValueWithUnitString (double value, String unit) {
+        return String.format("%.0f" + unit, value);
     }
 
     public void calculation() {
@@ -47,58 +67,39 @@ public class RecipeActivity extends AppCompatActivity {
 
         totalDoughMass = breadCount * massPerBread / 100 * 100;
 
-        totalMixRateNotIncludeDough = (int)(flourRate + waterRate);
+        totalMixRateNotIncludeDough = (int) (flourRate + waterRate);
         totalFlourNotIncludeDough = ((100 * totalDoughMass / totalMixRateNotIncludeDough) + 50) / 100 * 100;
-        totalWaterNotIncludeDough = (int)(totalFlourNotIncludeDough * waterRate / 100);
-        totalSaltNotIncludeDough  = (int)(totalFlourNotIncludeDough * saltRate / 100);
-        totalYeastNotIncludeDough = (int)(totalFlourNotIncludeDough * yeastRate / 100);
-        totalDoughNotIncludeDough = (int)(totalFlourNotIncludeDough * doughRate / 100);
-        totalButterNotIncludeDough = (int)(totalFlourNotIncludeDough * butterRate / 100);
+        totalWaterNotIncludeDough = (int) (totalFlourNotIncludeDough * waterRate / 100);
+        totalSaltNotIncludeDough = (int) (totalFlourNotIncludeDough * saltRate / 100);
+        totalYeastNotIncludeDough = (int) (totalFlourNotIncludeDough * yeastRate / 100);
+        totalDoughNotIncludeDough = (int) (totalFlourNotIncludeDough * doughRate / 100);
+        totalButterNotIncludeDough = (int) (totalFlourNotIncludeDough * butterRate / 100);
 
-        totalMixRateIncludeDough = (int)(totalMixRateNotIncludeDough + doughRate);
+        totalMixRateIncludeDough = (int) (totalMixRateNotIncludeDough + doughRate);
         totalFlourIncludeDough = ((100 * totalDoughMass / totalMixRateIncludeDough) + 50) / 100 * 100;
-        totalWaterIncludeDough = (int)(totalFlourIncludeDough * waterRate / 100);
-        totalSaltIncludeDough  = (int)(totalFlourIncludeDough * saltRate / 100);
-        totalYeastIncludeDough = (int)(totalFlourIncludeDough * yeastRate / 100);
-        totalDoughIncludeDough = (int)(totalFlourIncludeDough * doughRate / 100);
-        totalButterIncludeDough = (int)(totalFlourIncludeDough * butterRate / 100);
+        totalWaterIncludeDough = (int) (totalFlourIncludeDough * waterRate / 100);
+        totalSaltIncludeDough = (int) (totalFlourIncludeDough * saltRate / 100);
+        totalYeastIncludeDough = (int) (totalFlourIncludeDough * yeastRate / 100);
+        totalDoughIncludeDough = (int) (totalFlourIncludeDough * doughRate / 100);
+        totalButterIncludeDough = (int) (totalFlourIncludeDough * butterRate / 100);
     }
 
     public void updateEdit() {
-        TextView mixRateIncludeDough = findViewById(R.id.mixRateIncludeDough);
-        TextView mixRateNotIncludeDough = findViewById(R.id.mixRateNotIncludeDough);
-        TextView massDough = findViewById(R.id.massDough);
-        TextView totalFlourMassNotIncludeDough = findViewById(R.id.totalFlourMassNotIncludeDough);
-        TextView totalFlourMassIncludeDough = findViewById(R.id.totalFlourMassIncludeDough);
-        TextView totalWaterMassNotIncludeDough = findViewById(R.id.totalWaterMassNotIncludeDough);
-        TextView totalWaterMassIncludeDough = findViewById(R.id.totalWaterMassIncludeDough);
-        TextView totalSaltMassNotIncludeDough = findViewById(R.id.totalSaltMassNotIncludeDough);
-        TextView totalSaltMassIncludeDough = findViewById(R.id.totalSaltMassIncludeDough);
-        TextView totalYeastMassNotIncludeDough = findViewById(R.id.totalYeastMassNotIncludeDough);
-        TextView totalYeastMassIncludeDough = findViewById(R.id.totalYeastMassIncludeDough);
-        TextView totalDoughMassNotIncludeDough = findViewById(R.id.totalDoughMassNotIncludeDough);
-        TextView totalDoughMassIncludeDough = findViewById(R.id.totalDoughMassIncludeDough);
-        TextView totalButterMassNotIncludeDough = findViewById(R.id.totalButterMassNotIncludeDough);
-        TextView totalButterMassIncludeDough = findViewById(R.id.totalButterMassIncludeDough);
-
-
-        massDough.setText(String.format("%dg", totalDoughMass));
-        mixRateNotIncludeDough.setText(String.format("%d%%", totalMixRateNotIncludeDough));
-        totalFlourMassNotIncludeDough.setText((String.format("%dg", totalFlourNotIncludeDough)));
-        totalWaterMassNotIncludeDough.setText((String.format("%dg", totalWaterNotIncludeDough)));
-        totalSaltMassNotIncludeDough.setText((String.format("%dg", totalSaltNotIncludeDough)));
-        totalYeastMassNotIncludeDough.setText((String.format("%dg", totalYeastNotIncludeDough)));
-        totalDoughMassNotIncludeDough.setText((String.format("%dg", totalDoughNotIncludeDough)));
-        totalButterMassNotIncludeDough.setText((String.format("%dg", totalButterNotIncludeDough)));
-
-        mixRateIncludeDough.setText(String.format("%d%%", totalMixRateIncludeDough));
-        totalFlourMassIncludeDough.setText((String.format("%dg", totalFlourIncludeDough)));
-        totalWaterMassIncludeDough.setText((String.format("%dg", totalWaterIncludeDough)));
-        totalSaltMassIncludeDough.setText((String.format("%dg", totalSaltIncludeDough)));
-        totalYeastMassIncludeDough.setText((String.format("%dg", totalYeastIncludeDough)));
-        totalDoughMassIncludeDough.setText((String.format("%dg", totalDoughIncludeDough)));
-        totalButterMassIncludeDough.setText((String.format("%dg", totalButterIncludeDough)));
-
+        updateTextViewValue(R.id.massDough, getValueWithUnitString(totalDoughMass, UNIT_GRAM));
+        updateTextViewValue(R.id.mixRateNotIncludeDough, getValueWithUnitString(totalMixRateNotIncludeDough, UNIT_PERCENT));
+        updateTextViewValue(R.id.mixRateIncludeDough, getValueWithUnitString(totalMixRateIncludeDough, UNIT_PERCENT));
+        updateTextViewValue(R.id.totalFlourMassNotIncludeDough, getValueWithUnitString(totalFlourNotIncludeDough, UNIT_GRAM));
+        updateTextViewValue(R.id.totalFlourMassIncludeDough, getValueWithUnitString(totalFlourIncludeDough, UNIT_GRAM));
+        updateTextViewValue(R.id.totalWaterMassNotIncludeDough, getValueWithUnitString(totalWaterNotIncludeDough, UNIT_GRAM));
+        updateTextViewValue(R.id.totalWaterMassIncludeDough, getValueWithUnitString(totalWaterIncludeDough, UNIT_GRAM));
+        updateTextViewValue(R.id.totalSaltMassNotIncludeDough, getValueWithUnitString(totalSaltNotIncludeDough, UNIT_GRAM));
+        updateTextViewValue(R.id.totalSaltMassIncludeDough, getValueWithUnitString(totalSaltIncludeDough, UNIT_GRAM));
+        updateTextViewValue(R.id.totalYeastMassNotIncludeDough, getValueWithUnitString(totalYeastNotIncludeDough, UNIT_GRAM));
+        updateTextViewValue(R.id.totalYeastMassIncludeDough, getValueWithUnitString(totalYeastIncludeDough, UNIT_GRAM));
+        updateTextViewValue(R.id.totalDoughMassNotIncludeDough, getValueWithUnitString(totalDoughNotIncludeDough, UNIT_GRAM));
+        updateTextViewValue(R.id.totalDoughMassIncludeDough, getValueWithUnitString(totalDoughIncludeDough, UNIT_GRAM));
+        updateTextViewValue(R.id.totalButterMassNotIncludeDough, getValueWithUnitString(totalButterNotIncludeDough, UNIT_GRAM));
+        updateTextViewValue(R.id.totalButterMassIncludeDough, getValueWithUnitString(totalButterIncludeDough, UNIT_GRAM));
     }
 
     public void calcButtonClick(View view) {
