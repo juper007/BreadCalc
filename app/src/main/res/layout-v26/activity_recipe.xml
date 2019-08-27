@@ -1,0 +1,592 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".RecipeActivity">
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.google.android.material.bottomappbar.BottomAppBar
+            android:id="@+id/bottom_app_bar"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:layout_gravity="bottom"
+            app:backgroundTint="@color/colorPrimary"
+            app:fabAlignmentMode="center" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/baseline_save_white"
+            app:layout_anchor="@id/bottom_app_bar" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="10sp">
+
+            <TextView
+                android:id="@+id/ingredientView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#44546A"
+                android:gravity="center"
+                android:text="@string/recipe_text_kr"
+                android:textColor="#FFFFFF"
+                android:textSize="24sp" />
+
+            <LinearLayout
+                android:id="@+id/flour"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/flour_text"
+                    android:layout_width="50dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/flour_text_kr"
+                    android:textSize="14sp" />
+
+                <EditText
+                    android:id="@+id/flourName_editText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:autofillHints=""
+                    android:ems="10"
+                    android:hint="@string/flourName_text_kr"
+                    android:inputType="textPersonName"
+                    android:nextFocusDown="@id/waterName_editText"
+                    android:textSize="14sp" />
+
+                <EditText
+                    android:id="@+id/flourPercent_editText"
+                    android:layout_width="33dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:autofillHints=""
+                    android:digits="#.00"
+                    android:editable="false"
+                    android:ems="10"
+                    android:hint="@string/hundred_number"
+                    android:inputType="numberDecimal"
+                    android:text="@string/hundred_number"
+                    android:textSize="14sp"
+                    tools:ignore="Deprecated" />
+
+                <TextView
+                    android:id="@+id/flourUnit_text"
+                    android:layout_width="6dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/percent"
+                    android:textSize="14sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/water"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/water_text"
+                    android:layout_width="50dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/water_text_kr"
+                    android:textSize="14sp" />
+
+                <EditText
+                    android:id="@+id/waterName_editText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:autofillHints=""
+                    android:ems="10"
+                    android:hint="@string/waterName_text_kr"
+                    android:inputType="textPersonName"
+                    android:nextFocusDown="@id/waterPercent_editText"
+                    android:textSize="14sp" />
+
+                <EditText
+                    android:id="@+id/waterPercent_editText"
+                    android:layout_width="34dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:autofillHints=""
+                    android:ems="10"
+                    android:hint="@string/zeroPercent_text"
+                    android:inputType="numberDecimal"
+                    android:nextFocusDown="@id/saltPercent_editText"
+                    android:textSize="14sp"
+                    tools:ignore="Deprecated" />
+
+                <TextView
+                    android:id="@+id/waterUnit_text"
+                    android:layout_width="6dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/percent"
+                    android:textSize="14sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ingredient1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/salt_text"
+                    android:layout_width="80dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="@string/salt_text_kr"
+                    android:textSize="14sp" />
+
+                <EditText
+                    android:id="@+id/saltPercent_editText"
+                    android:layout_width="34dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:autofillHints=""
+                    android:ems="10"
+                    android:hint="@string/zeroPercent_text"
+                    android:inputType="numberDecimal"
+                    android:nextFocusDown="@id/yeastPercent_editText"
+                    android:textSize="14sp"
+                    tools:ignore="Deprecated" />
+
+                <TextView
+                    android:id="@+id/saltUnit_text"
+                    android:layout_width="6dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/percent"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/yeast_text"
+                    android:layout_width="80dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="@string/yeast_text_kr"
+                    android:textSize="14sp" />
+
+                <EditText
+                    android:id="@+id/yeastPercent_editText"
+                    android:layout_width="34dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:autofillHints=""
+                    android:ems="10"
+                    android:hint="@string/zeroPercent_text"
+                    android:inputType="numberDecimal"
+                    android:nextFocusDown="@id/doughPercent_editText"
+                    android:textSize="14sp"
+                    tools:ignore="Deprecated" />
+
+                <TextView
+                    android:id="@+id/yeastUnit_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/percent"
+                    android:textSize="14sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ingredient2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/dough_text"
+                    android:layout_width="80dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="@string/dough_text_kr"
+                    android:textSize="14sp" />
+
+                <EditText
+                    android:id="@+id/doughPercent_editText"
+                    android:layout_width="34dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:autofillHints=""
+                    android:ems="10"
+                    android:hint="@string/zeroPercent_text"
+                    android:inputType="numberDecimal"
+                    android:nextFocusDown="@id/butterPercent_editText"
+                    android:textSize="14sp"
+                    tools:ignore="Deprecated" />
+
+                <TextView
+                    android:id="@+id/doughUnit_text"
+                    android:layout_width="6dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/percent"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/butter_text"
+                    android:layout_width="80dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="@string/butter_text_kr"
+                    android:textSize="14sp" />
+
+                <EditText
+                    android:id="@+id/butterPercent_editText"
+                    android:layout_width="34dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:autofillHints=""
+                    android:ems="10"
+                    android:hint="@string/zeroPercent_text"
+                    android:inputType="numberDecimal"
+                    android:nextFocusDown="@id/breadCount_editText"
+                    android:textSize="14sp"
+                    tools:ignore="Deprecated" />
+
+                <TextView
+                    android:id="@+id/butterUnit_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/percent"
+                    android:textSize="14sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ingredient3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/BreadCount_text"
+                    android:layout_width="80dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="@string/breadCount_text_kr"
+                    android:textSize="14sp" />
+
+                <EditText
+                    android:id="@+id/breadCount_editText"
+                    android:layout_width="34dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:autofillHints=""
+                    android:ems="10"
+                    android:hint="@string/zero_text"
+                    android:inputType="number"
+                    android:nextFocusDown="@id/massPerBread_editText"
+                    android:textSize="14sp"
+                    tools:ignore="Deprecated" />
+
+                <TextView
+                    android:id="@+id/BreadCountUnit_text"
+                    android:layout_width="6dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/breadCountUnit_text_kr"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/massPerBread_text"
+                    android:layout_width="80dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="@string/massPerBread_text_kr"
+                    android:textSize="14sp" />
+
+                <EditText
+                    android:id="@+id/massPerBread_editText"
+                    android:layout_width="34dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:autofillHints=""
+                    android:ems="10"
+                    android:hint="@string/zero_text"
+                    android:inputType="number"
+                    android:textSize="14sp"
+                    tools:ignore="Deprecated" />
+
+                <TextView
+                    android:id="@+id/massPerBreadUnit_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/gram"
+                    android:textSize="14sp" />
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/calc_button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="calcButtonClick"
+                android:text="@string/Calc_text_kr" />
+
+            <TextView
+                android:id="@+id/massView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:background="#44546A"
+                android:gravity="center"
+                android:text="@string/mass_text_kr"
+                android:textColor="#FFFFFF"
+                android:textSize="24sp" />
+
+            <TableLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:stretchColumns="1">
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:layout_column="1"
+                        android:padding="3dip"
+                        android:gravity="center"
+                        android:text="" />
+
+                    <TextView
+                        android:layout_width="130dp"
+                        android:layout_column="2"
+                        android:padding="3dip"
+                        android:gravity="center"
+                        android:text="@string/notIncludeDough_text_kr" />
+
+                    <TextView
+                        android:layout_width="130dp"
+                        android:layout_column="3"
+                        android:padding="3dip"
+                        android:gravity="center"
+                        android:text="@string/includeDough_text_kr" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:layout_column="1"
+                        android:padding="3dip"
+                        android:gravity="center"
+                        android:text="@string/doughMixRate_text_kr" />
+
+                    <TextView
+                        android:id="@+id/mixRateNotIncludeDough"
+                        android:layout_column="2"
+                        android:padding="3dip"
+                        android:gravity="center"
+                        android:text="" />
+
+                    <TextView
+                        android:id="@+id/mixRateIncludeDough"
+                        android:layout_column="3"
+                        android:padding="3dip"
+                        android:gravity="center"
+                        android:text="" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:layout_column="1"
+                        android:padding="3dip"
+                        android:gravity="center"
+                        android:text="@string/doughMass_text_kr" />
+
+                    <TextView
+                        android:id="@+id/massDough"
+                        android:layout_column="2"
+                        android:padding="3dip"
+                        android:gravity="center"
+                        android:text=""
+                        android:layout_span="2"/>
+                </TableRow>
+
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:layout_column="1"
+                        android:padding="3dip"
+                        android:gravity="center"
+                        android:text="@string/totalFlour_text_kr" />
+
+                    <TextView
+                        android:id="@+id/totalFlourMassNotIncludeDough"
+                        android:layout_column="2"
+                        android:padding="3dip"
+                        android:gravity="center"
+                        android:text="" />
+
+                    <TextView
+                        android:id="@+id/totalFlourMassIncludeDough"
+                        android:layout_column="3"
+                        android:padding="3dip"
+                        android:gravity="center"
+                        android:text="" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:layout_column="1"
+                        android:padding="3dip"
+                        android:gravity="center"
+                        android:text="@string/totalWater_text_kr" />
+
+                    <TextView
+                        android:id="@+id/totalWaterMassNotIncludeDough"
+                        android:layout_column="2"
+                        android:padding="3dip"
+                        android:gravity="center"
+                        android:text="" />
+
+                    <TextView
+                        android:id="@+id/totalWaterMassIncludeDough"
+                        android:layout_column="3"
+                        android:padding="3dip"
+                        android:gravity="center"
+                        android:text="" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:layout_column="1"
+                        android:padding="3dip"
+                        android:gravity="center"
+                        android:text="@string/totalSalt_text_kr" />
+
+                    <TextView
+                        android:id="@+id/totalSaltMassNotIncludeDough"
+                        android:layout_column="2"
+                        android:padding="3dip"
+                        android:gravity="center"
+                        android:text="" />
+
+                    <TextView
+                        android:id="@+id/totalSaltMassIncludeDough"
+                        android:layout_column="3"
+                        android:padding="3dip"
+                        android:gravity="center"
+                        android:text="" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:layout_column="1"
+                        android:padding="3dip"
+                        android:gravity="center"
+                        android:text="@string/totalYeast_text_kr" />
+
+                    <TextView
+                        android:id="@+id/totalYeastMassNotIncludeDough"
+                        android:layout_column="2"
+                        android:padding="3dip"
+                        android:gravity="center"
+                        android:text="" />
+
+                    <TextView
+                        android:id="@+id/totalYeastMassIncludeDough"
+                        android:layout_column="3"
+                        android:padding="3dip"
+                        android:gravity="center"
+                        android:text="" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:layout_column="1"
+                        android:padding="3dip"
+                        android:gravity="center"
+                        android:text="@string/totalDough_text_kr" />
+
+                    <TextView
+                        android:id="@+id/totalDoughMassNotIncludeDough"
+                        android:layout_column="2"
+                        android:padding="3dip"
+                        android:gravity="center"
+                        android:text="" />
+
+                    <TextView
+                        android:id="@+id/totalDoughMassIncludeDough"
+                        android:layout_column="3"
+                        android:padding="3dip"
+                        android:gravity="center"
+                        android:text="" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:layout_column="1"
+                        android:padding="3dip"
+                        android:gravity="center"
+                        android:text="@string/totalButter_text_kr" />
+
+                    <TextView
+                        android:id="@+id/totalButterMassNotIncludeDough"
+                        android:layout_column="2"
+                        android:padding="3dip"
+                        android:gravity="center"
+                        android:text="" />
+
+                    <TextView
+                        android:id="@+id/totalButterMassIncludeDough"
+                        android:layout_column="3"
+                        android:padding="3dip"
+                        android:gravity="center"
+                        android:text="" />
+                </TableRow>
+
+
+
+            </TableLayout>
+        </LinearLayout>
+
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
